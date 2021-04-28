@@ -1,0 +1,13 @@
+from MultWeights import MultiplicativeWeights
+
+
+class MultiplicativeWeights1(MultiplicativeWeights):
+
+    def __init__(self, beta = 0.5):
+        super().__init__(beta=beta)
+
+    def update_weights(self, weights, preds, outcome):
+        weights[preds != outcome] *= self.beta
+        return weights
+
+
