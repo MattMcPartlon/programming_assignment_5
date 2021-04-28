@@ -74,6 +74,7 @@ class MultiplicativeWeights(ABC):
 
     @abstractmethod
     def update_weights(self, weights, preds, outcome):
+        #TODO: Implement different weight update schemes for each variant
         pass
 
     def alg(self, data, start_day=20):
@@ -87,14 +88,20 @@ class MultiplicativeWeights(ABC):
             data_to_t = get_data_up_to_t(data, t)
             # have experts make predictions based on this data,
             # and get the weighted opinion
-            preds = self.get_predictions(data_to_t)
-            decision = get_weighted_majority(weights, preds)
+            #Get predictions from each expert
+            preds = None #TODO
+            #Get the weighted majority opinion of the experts
+            decision = None #TODO
             # reveal the ground truth
             outcome = get_outcome(data, t)
+            # track decisions
             decisions.append(decision)
-            weights = scale_weights(self.update_weights(weights, preds, outcome))
-            expert_mistakes[preds != outcome] += 1
-            # avoid underflow
+            #update the expert's weights
+            weights = None #TODO
+            weights = scale_weights(weights)
+            #update the number of mistakes made by each expert
+            #TODO
+
         reward = get_rewards(data, start_day, decisions)
         mistakes = get_mistakes(data, start_day, decisions)
         return decisions, expert_mistakes, mistakes, reward

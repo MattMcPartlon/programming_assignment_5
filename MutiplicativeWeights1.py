@@ -7,7 +7,6 @@ class MultiplicativeWeights1(MultiplicativeWeights):
         super().__init__(beta=beta)
 
     def update_weights(self, weights, preds, outcome):
-        weights[preds != outcome] *= self.beta
-        return weights
+        pass #TODO
 
 

@@ -25,7 +25,7 @@ experts.append(YesterdaysNews())
 """
 create experts considering data from various previous time frames
 """
-for window in range(min(max_window,5), min(15,max_window)):
+for window in range(1, min(20,max_window)):
     e1 = MeanReversion(window, sign=1)
     e2 = ExpectationExpert(window, sign=1)
     e3 = VolumeWeightedCloseTrend(window)
@@ -47,27 +47,5 @@ print('mistakes :', mistakes)
 print('percentage of mistakes', 100 * mistakes / len(decisions))
 print('min of expert mistakes', np.min(expert_mistakes))
 
-
-"""
-For the time period of choice (3000 days), the algorithms perform as follows:
-
-MW1:
-num experts : 78
-reward : 98.06658172607422
-mistakes : 361
-percentage of mistakes 61.499148211243615
-min of expert mistakes 245.0
-
-MW2:
-reward : 103.94658660888672
-mistakes : 361
-percentage of mistakes 61.499148211243615
-min of expert mistakes 245.0
-
-The two algorithms made the exact same number of mistakes over this time period.
-However, the second variant achieved a greater reward.
-
-Surprising - pretty nice.
-"""
 
 
